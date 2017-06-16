@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "stat.h"
+
 #include <experimental/filesystem>
 #include <iostream>
 
@@ -19,7 +21,6 @@ namespace fsutil
 // -----
 
 typedef fs::path path_t;
-// TODO: need a stat_t
 typedef double date_t;
 typedef std::istream istream_t;
 typedef std::ostream ostream_t;
@@ -34,7 +35,9 @@ constexpr size_t BUFSIZE = 16 * 1024;
 
 // STAT
 
-// TODO: here...
+/** \brief POSIX-like stat call.
+ */
+stat_t stat(const path_t& path);
 
 // NORMALIZATION
 
@@ -58,6 +61,8 @@ bool exists(const path_t& path);
 // Need to access them reliably, in a cross-platform manner
 //path_t expanduser(const path_t& path);
 //path_t expandvars(const path_t& path);
+
+
 //double getatime(const path_t& path);
 //double getmtime(const path_t& path);
 //double getctime(const path_t& path);
