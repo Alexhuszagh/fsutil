@@ -19,7 +19,7 @@ void copyfileobj(istream_t& fsrc, ostream_t& fdst, size_t length)
     // read entire file in single shot
     if (length == SIZE_MAX) {
         fdst << fsrc.rdbuf();
-        return
+        return;
     }
 
     // read chunks of file to minimize memory usage

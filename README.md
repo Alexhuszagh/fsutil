@@ -13,13 +13,10 @@ High-level, cross-platform filesystem operations for C++.
 
 ## Design
 
-fsutil aims to be a drop-in replacement
-
-// TODO
 
 ## Portability
 
-fsutil requires `<experimental/filesystem>`, a C++17 feature, requiring a compiler at least one of the compilers listed below:
+fsutil requires `<experimental/filesystem>`, a proposed C++17 feature, requiring a compiler at least one of the compilers listed below:
 
 - GCC 5.3
 - Clang 3.9

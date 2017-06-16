@@ -6,3 +6,35 @@
  */
 
 #include <fsutil.h>
+
+
+namespace fsutil
+{
+// API
+// ---
+
+
+path_t abspath(const path_t& path)
+{
+    return fs::absolute(path);
+}
+
+
+path_t basename(const path_t& path)
+{
+    return path.filename();
+}
+
+
+path_t dirname(const path_t& path)
+{
+    return path.parent_path();
+}
+
+
+bool exists(const path_t& path)
+{
+    return fs::exists(path);
+}
+
+}   /* fsutil */

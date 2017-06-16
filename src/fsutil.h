@@ -32,13 +32,30 @@ constexpr size_t BUFSIZE = 16 * 1024;
 // API
 // ---
 
+// STAT
+
+// TODO: here...
+
 // NORMALIZATION
 
-//path_t abspath(const path_t& path);
-//path_t basename(const path_t& path);
-//path_t dirname(const path_t& path);
-//bool exists(const path_t& path);
-//bool lexists(const path_t& path);
+/** \brief Return the absolute path relative to the base.
+ */
+path_t abspath(const path_t& path);
+
+/** \brief Return name of file, relative to parent directory.
+ */
+path_t basename(const path_t& path);
+
+/** \brief Return the path of the parent directory.
+ */
+path_t dirname(const path_t& path);
+
+/** \brief Check if path exists on filesystem.
+ */
+bool exists(const path_t& path);
+
+// TODO: need to have tge home and temp directories
+// Need to access them reliably, in a cross-platform manner
 //path_t expanduser(const path_t& path);
 //path_t expandvars(const path_t& path);
 //double getatime(const path_t& path);
@@ -65,29 +82,29 @@ constexpr size_t BUFSIZE = 16 * 1024;
 
 // MANIPULATIONS
 
-/** \brief Copy contents of fsrc to fdst, reading the file in chunks.
- */
-void copyfileobj(istream_t& fsrc, ostream_t& fdst, size_t length = BUFSIZE);
-
-/** \brief Copy a file from src to the file dst.
- */
-void copyfile(const path_t& src, const path_t& dst);
-
-/** \brief Copy permissions from src to dst.
- */
-void copymode(const path_t& src, const path_t& dst);
-
-/** \brief Copy permissions, access and modification times from src to dst.
- */
-void copystat(const path_t& src, const path_t& dst);
-
-/** \brief Copy src file to dst.
- */
-void copy(const path_t& src, const path_t& dst);
-
-/** \brief Copy data and metadata.
- */
-void copy2(const path_t& src, const path_t& dst);
+///** \brief Copy contents of fsrc to fdst, reading the file in chunks.
+// */
+//void copyfileobj(istream_t& fsrc, ostream_t& fdst, size_t length = BUFSIZE);
+//
+///** \brief Copy a file from src to the file dst.
+// */
+//void copyfile(const path_t& src, const path_t& dst);
+//
+///** \brief Copy permissions from src to dst.
+// */
+//void copymode(const path_t& src, const path_t& dst);
+//
+///** \brief Copy permissions, access and modification times from src to dst.
+// */
+//void copystat(const path_t& src, const path_t& dst);
+//
+///** \brief Copy src file to dst.
+// */
+//void copy(const path_t& src, const path_t& dst);
+//
+///** \brief Copy data and metadata.
+// */
+//void copy2(const path_t& src, const path_t& dst);
 
 //void copytree(const path_t& src, const path_t& dst, symlinks, ignore);
 //void move(const path_t& src, const path_t& dst);
