@@ -12,7 +12,9 @@ set(CMAKE_CXX_STANDARD 14)
 # OPTIONS
 # -------
 
+option(BUILD_EXAMPLES "Build example files" OFF)
 option(BUILD_STATIC "Build static library" ON)
+option(BUILD_TESTS "Build unittests (requires GTest)" OFF)
 
 if(BUILD_STATIC)
     if(UNIX)
@@ -41,9 +43,43 @@ else()
     add_library(fsutil SHARED ${FSUTIL_SOURCES})
 endif()
 
+set(FSUTIL_LIBRARIES fsutil)
+
 # EXAMPLES
 # --------
 
+file(GLOB FSUTIL_EXAMPLES example/*.cpp)
+
+if(BUILD_EXAMPLES)
+    foreach(source ${FSUTIL_EXAMPLES})
+        get_filename_component(example ${source} NAME_WE)
+        set(target "fsutil_${example}")
+        add_executable(${target} "${source}")
+        set_target_properties(${target} PROPERTIES OUTPUT_NAME ${example})
+        target_link_libraries(${target} ${LATTICE_LIBRARIES})
+    endforeach(source)
+endif()
 
 # TESTS
 # -----
+
+file(GLOB FSUTIL_TESTS test/*.cpp)
+
+if(BUILD_TESTS)
+    # if we're in a dependent project, a gtest target may already exist
+    if(NOT TARGET gtest)
+        add_subdirectory(googletest)
+    endif()
+
+    add_executable(fsutil_tests ${FSUTIL_TESTS})
+    target_link_libraries(fsutil_tests
+        gtest
+        gtest_main
+        ${FSUTIL_LIBRARIES}
+    )
+
+     add_custom_target(check_fsutil
+        COMMAND $<TARGET_FILE:fsutil_tests>
+        DEPENDS fsutil_tests
+    )
+endif()

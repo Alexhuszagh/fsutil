@@ -2,7 +2,9 @@
 //  :license: MIT, see licenses/mit.md for more details.
 /**
  *  \addtogroup fsutil
- *  \brief fsutil declarations.
+ *  \brief fsutil public header.
+ *
+ *  This module defines the public API for fsutil.
  */
 
 #pragma once
