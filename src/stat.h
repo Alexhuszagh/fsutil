@@ -34,7 +34,7 @@ struct stat_t
    double         st_ctime;
 };
 
-#else                               // POSIFX
+#else                               // POSIX
 
 struct stat_t
 {
