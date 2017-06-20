@@ -145,7 +145,7 @@ path_t normpath(const path_t& path)
 
     // add the normalize elements to the path
     for (auto p: buffer) {
-        std::cout << "p is: " *p << std::endl;
+        std::cout << "p is: " << *p << std::endl;
         preferred /= *p;
     }
 
