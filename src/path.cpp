@@ -108,7 +108,7 @@ path_t normpath(const path_t& path)
     std::cout << preferred << std::endl;
 
     // get our directory separators
-    std::deque<std::string> buffer;
+    std::deque<typename path_t::string_type> buffer;
     for (; it != path.end(); ++it) {
         auto &p = *it;
         if (p == ".") {
