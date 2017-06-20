@@ -55,6 +55,8 @@ endif()
 set(FSUTIL_LIBRARIES fsutil)
 if(CMAKE_COMPILER_IS_GNUCXX)
     list(APPEND FSUTIL_LIBRARIES -lstdc++fs)
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    list(APPEND FSUTIL_LIBRARIES -stdlib=libstdc++ -lstdc++fs)
 endif()
 
 # EXAMPLES
