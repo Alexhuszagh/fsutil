@@ -12,6 +12,21 @@
 
 namespace fsutil
 {
+// CONSTANTS
+// ---------
+
+#if defined(_WIN32)                // WINDOWS
+
+static const std::wstring CURRENT_DIR(L".");
+static const std::wstring PARENT_DIR(L"..");
+
+#else
+
+static const std::string CURRENT_DIR(".");
+static const std::string PARENT_DIR("..");
+
+#endif
+
 // API
 // ---
 
@@ -107,12 +122,12 @@ path_t normpath(const path_t& path)
     std::deque<typename path_t::string_type> buffer;
     for (; it != path.end(); ++it) {
         auto &p = *it;
-        if (p == ".") {
+        if (p == CURRENT_DIR) {
             // skip unless there is no root path or current path
             if (preferred.empty() && buffer.empty() && std::distance(it, path.end()) == 1) {
                 buffer.push_back(p);
             }
-        } else if (p == "..") {
+        } else if (p == PARENT_DIR) {
             // Erase if the buffer is not empty and the last element is not ..
             // otherwise, we have a relative path, and need to keep the item
             // If the path is "./..", we just want "..".
@@ -121,10 +136,10 @@ path_t normpath(const path_t& path)
             // path, so add the element.
             if (!buffer.empty()) {
                 auto &parent = buffer.back();
-                if (parent == ".") {
+                if (parent == CURRENT_DIR) {
                     buffer.erase(buffer.end()-1);
                     buffer.push_back(p);
-                } else if (parent == "..") {
+                } else if (parent == PARENT_DIR) {
                     buffer.push_back(p);
                 } else {
                     buffer.erase(buffer.end()-1);
