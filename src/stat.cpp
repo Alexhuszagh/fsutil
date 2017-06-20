@@ -64,7 +64,7 @@ stat_t stat_windows(const path_t& path)
     stat_t data;
     int code;
 
-    code = ::_stat(path.wstring().data(), &sb);
+    code = ::_wstat(path.wstring().data(), &sb);
     handle_error(path, code);
     copy_native(sb, data);
 

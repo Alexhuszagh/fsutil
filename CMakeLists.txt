@@ -99,6 +99,13 @@ if(BUILD_TESTS)
         ${FSUTIL_LIBRARIES}
     )
 
+    # Need to specify proper exception handling for Windows.
+    if(MSVC)
+        set_target_properties(fsutil_tests PROPERTIES
+            COMPILE_OPTIONS "/EHsc;$<$<CONFIG:Release>:/Od>"
+        )
+    endif()
+
      add_custom_target(check_fsutil
         COMMAND $<TARGET_FILE:fsutil_tests>
         DEPENDS fsutil_tests
