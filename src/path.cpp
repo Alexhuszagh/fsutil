@@ -108,13 +108,13 @@ path_t normpath(const path_t& path)
     std::cout << preferred << std::endl;
 
     // get our directory separators
-    std::deque<const path_t*> buffer;
+    std::deque<std::string> buffer;
     for (; it != path.end(); ++it) {
         auto &p = *it;
         if (p == ".") {
             // skip unless there is no root path or current path
             if (preferred.empty() && buffer.empty() && std::distance(it, path.end()) == 1) {
-                buffer.push_back(&p);
+                buffer.push_back(p);
             }
         } else if (p == "..") {
             // Erase if the buffer is not empty and the last element is not ..
@@ -124,20 +124,20 @@ path_t normpath(const path_t& path)
             // at the root, so skip the item. Otherwise, we have a relative
             // path, so add the element.
             if (!buffer.empty()) {
-                auto &parent = *buffer.back();
+                auto &parent = buffer.back();
                 if (parent == ".") {
                     buffer.erase(buffer.end()-1);
-                    buffer.push_back(&p);
+                    buffer.push_back(p);
                 } else if (parent == "..") {
-                    buffer.push_back(&p);
+                    buffer.push_back(p);
                 } else {
                     buffer.erase(buffer.end()-1);
                 }
             } else if (preferred.empty()) {
-                buffer.push_back(&p);
+                buffer.push_back(p);
             }
         } else {
-            buffer.push_back(&p);
+            buffer.push_back(p);
         }
     }
     std::cout << buffer.size() << std::endl;
@@ -145,8 +145,8 @@ path_t normpath(const path_t& path)
 
     // add the normalize elements to the path
     for (auto p: buffer) {
-        std::cout << "p is: " << *p << std::endl;
-        preferred /= *p;
+        std::cout << "p is: " << p << std::endl;
+        preferred /= p;
     }
 
     return preferred;
