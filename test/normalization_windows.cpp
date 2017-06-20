@@ -13,6 +13,7 @@ TEST(normalization, normpath)
 {
     EXPECT_PATH_EQ(fsutil::normpath(L"."), L".");
     EXPECT_PATH_EQ(fsutil::path_t(L"."), L".");
+    EXPECT_PATH_EQ(fsutil::normpath("/usr/bin"), "/usr/bin");
 //    EXPECT_PATH_EQ(fsutil::normpath(L"./"), L".");
 //    EXPECT_PATH_EQ(fsutil::normpath(L".\\"), L".");
 //    EXPECT_PATH_EQ(fsutil::normpath(L"./.."), L"..");
