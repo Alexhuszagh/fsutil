@@ -18,13 +18,12 @@ addons:
     sources:
       - llvm-toolchain-precise
       - ubuntu-toolchain-r-test
-  packages:
-    - clang-3.9
-    - g++-6
-    - gcc-6
+    packages:
+      - clang-3.9
+      - g++-6
+      - gcc-6
 
 install:
-  - g++-6 -v
   - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - ln -s /usr/bin/clang-3.9 /usr/local/bin/clang
