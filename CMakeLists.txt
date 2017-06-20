@@ -10,6 +10,11 @@ project(fsutil CXX)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
+# OPERATING SYSTEM
+# ----------------
+
+set(LINUX ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+
 # OPTIONS
 # -------
 
@@ -53,10 +58,10 @@ else()
 endif()
 
 set(FSUTIL_LIBRARIES fsutil)
-if(CMAKE_COMPILER_IS_GNUCXX)
+if(LINUX OR CMAKE_COMPILER_IS_GNUCXX)
     list(APPEND FSUTIL_LIBRARIES -lstdc++fs)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    list(APPEND FSUTIL_LIBRARIES -stdlib=libstdc++ -lstdc++fs)
+    list(APPEND FSUTIL_LIBRARIES -lc++experimental)
 endif()
 
 # EXAMPLES
