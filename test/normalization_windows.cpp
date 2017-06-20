@@ -12,16 +12,16 @@
 
 TEST(normalization, normpath)
 {
-    EXPECT_TRUE(fsutil::normpath(".") == ".");
-    EXPECT_TRUE(fsutil::normpath("./") == ".");
-    EXPECT_TRUE(fsutil::normpath(".\\") == ".");
-    EXPECT_TRUE(fsutil::normpath("./..") == "..");
-    EXPECT_TRUE(fsutil::normpath(".\\..") == "..");
-    EXPECT_TRUE(fsutil::normpath("..") == "..");
-    EXPECT_TRUE(fsutil::normpath("../") == "..");
-    EXPECT_TRUE(fsutil::normpath("..\\") == "..");
-    EXPECT_TRUE(fsutil::normpath("/.") == "\\");
-    EXPECT_TRUE(fsutil::normpath("\\.") == "\\");
+    EXPECT_TRUE(fsutil::normpath(L".") == L".");
+    EXPECT_TRUE(fsutil::normpath(L"./") == L".");
+    EXPECT_TRUE(fsutil::normpath(L".\\") == L".");
+    EXPECT_TRUE(fsutil::normpath(L"./..") == L"..");
+    EXPECT_TRUE(fsutil::normpath(L".\\..") == L"..");
+    EXPECT_TRUE(fsutil::normpath(L"..") == L"..");
+    EXPECT_TRUE(fsutil::normpath(L"../") == L"..");
+    EXPECT_TRUE(fsutil::normpath(L"..\\") == L"..");
+    EXPECT_TRUE(fsutil::normpath(L"/.") == L"\\");
+    EXPECT_TRUE(fsutil::normpath(L"\\.") == L"\\");
 
 // TODO: also need Windows-specific shit...
 //    EXPECT_EQ(fsutil::normpath("/.."), "/");
