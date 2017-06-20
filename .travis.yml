@@ -5,6 +5,8 @@ notifications:
     on_success: never
     on_failure: always
 
+dist: trusty
+sudo: required
 language: cpp
 compiler:
   - clang
