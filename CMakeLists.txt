@@ -95,7 +95,7 @@ if(BUILD_TESTS)
     if(NOT TARGET gtest)
         add_subdirectory(googletest)
     endif()
-    include_directories(googletest/googletest/include)
+    include_directories(test googletest/googletest/include)
 
     add_executable(fsutil_tests ${FSUTIL_TESTS})
     target_link_libraries(fsutil_tests

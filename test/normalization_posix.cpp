@@ -3,8 +3,7 @@
 
 #if !defined(_WIN32)                // POSIX
 
-#include <fsutil.h>
-#include <gtest/gtest.h>
+#include "config.h"
 
 // TESTS
 // -----
@@ -12,18 +11,18 @@
 
 TEST(normalization, normpath)
 {
-    EXPECT_TRUE(fsutil::normpath(".") == ".");
-    EXPECT_TRUE(fsutil::normpath("./") == ".");
-    EXPECT_TRUE(fsutil::normpath("./..") == "..");
-    EXPECT_TRUE(fsutil::normpath("..") == "..");
-    EXPECT_TRUE(fsutil::normpath("../") == "..");
-    EXPECT_TRUE(fsutil::normpath("/.") == "/");
-    EXPECT_TRUE(fsutil::normpath("/..") == "/");
-    EXPECT_TRUE(fsutil::normpath("/usr/bin") == "/usr/bin");
-    EXPECT_TRUE(fsutil::normpath("/usr/bin/fakeroot") == "/usr/bin/fakeroot");
-    EXPECT_TRUE(fsutil::normpath("/usr/bin/./..") == "/usr");
-    EXPECT_TRUE(fsutil::normpath("./include") == "include");
-    EXPECT_TRUE(fsutil::normpath("./../bin/include") == "../bin/include");
+    EXPECT_PATH_EQ(fsutil::normpath("."), ".");
+    EXPECT_PATH_EQ(fsutil::normpath("./"), ".");
+    EXPECT_PATH_EQ(fsutil::normpath("./.."), "..");
+    EXPECT_PATH_EQ(fsutil::normpath(".."), "..");
+    EXPECT_PATH_EQ(fsutil::normpath("../"), "..");
+    EXPECT_PATH_EQ(fsutil::normpath("/."), "/");
+    EXPECT_PATH_EQ(fsutil::normpath("/.."), "/");
+    EXPECT_PATH_EQ(fsutil::normpath("/usr/bin"), "/usr/bin");
+    EXPECT_PATH_EQ(fsutil::normpath("/usr/bin/fakeroot"), "/usr/bin/fakeroot");
+    EXPECT_PATH_EQ(fsutil::normpath("/usr/bin/./.."), "/usr");
+    EXPECT_PATH_EQ(fsutil::normpath("./include"), "include");
+    EXPECT_PATH_EQ(fsutil::normpath("./../bin/include"), "../bin/include");
 }
 
 
