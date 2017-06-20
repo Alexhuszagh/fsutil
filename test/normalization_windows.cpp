@@ -12,7 +12,7 @@
 TEST(normalization, normpath)
 {
     EXPECT_PATH_EQ(fsutil::normpath(L"."), L".");
-    EXPECT_PATH_EQ(fsutil::path_(L"."), L".");
+    EXPECT_PATH_EQ(fsutil::path_t(L"."), L".");
 //    EXPECT_PATH_EQ(fsutil::normpath(L"./"), L".");
 //    EXPECT_PATH_EQ(fsutil::normpath(L".\\"), L".");
 //    EXPECT_PATH_EQ(fsutil::normpath(L"./.."), L"..");
