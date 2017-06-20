@@ -52,9 +52,9 @@ static void copy_native(const struct _stat& src, stat_t& dst)
     dst.st_gid = src.st_gid;
     dst.st_rdev = src.st_rdev;
     dst.st_size = src.st_size;
-//    dst.st_atime = src.st_atime;
-//    dst.st_mtime = src.st_mtime;
-//    dst.st_ctime = src.st_ctime;
+    dst.st_atim = {src.st_atime, 0};
+    dst.st_mtim = {src.st_mtime, 0};
+    dst.st_ctim = {src.st_ctime, 0};
 }
 
 
@@ -100,11 +100,11 @@ static void copy_native(const struct stat& src, stat_t& dst)
     dst.st_gid = src.st_gid;
     dst.st_rdev = src.st_rdev;
     dst.st_size = src.st_size;
-// TODO: these are macros for st_atim, etc.
-// Need to make sure they're compatible... Fuck
-//    dst.st_atime = src.st_atime;
-//    dst.st_mtime = src.st_mtime;
-//    dst.st_ctime = src.st_ctime;
+
+    // ignore the missing precision for backwards compatibility
+    dst.st_atim = {src.st_atime, 0};
+    dst.st_mtim = {src.st_mtime, 0};
+    dst.st_ctim = {src.st_ctime, 0};
 }
 
 
