@@ -27,15 +27,11 @@ TEST(normalization, normpath)
 }
 
 
-#if defined(__linux__)           // LINUX
-
 TEST(normalization, realpath)
 {
     fsutil::path_t symlink("../test/file/link");
     auto file = fsutil::realpath(symlink);
     EXPECT_FALSE(symlink == file);
 }
-
-#endif
 
 #endif

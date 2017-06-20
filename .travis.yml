@@ -1,14 +1,25 @@
 language: cpp
-compiler:
-  - clang
-  - gcc
-
 notifications:
   email:
     recipients:
       - ahuszagh@gmail.com
     on_success: never
     on_failure: always
+
+compiler:
+  - clang
+  - gcc
+
+os:
+  - linux
+  - osx
+
+matrix:
+  include:
+    - os: linux
+      dist: precise
+    - os: osx
+      osx_image: xcode8.3
 
 addons:
   apt:
