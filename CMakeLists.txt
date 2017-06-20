@@ -53,8 +53,7 @@ else()
 endif()
 
 set(FSUTIL_LIBRARIES fsutil)
-if (MSVC)
-else()
+if(CMAKE_COMPILER_IS_GNUCXX)
     list(APPEND FSUTIL_LIBRARIES -lstdc++fs)
 endif()
 
