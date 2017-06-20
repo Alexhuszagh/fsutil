@@ -31,9 +31,9 @@ TEST(normalization, normpath)
 
 TEST(normalization, realpath)
 {
-    fsutil::path_t libc_link("/lib/libc.so.6");
-    auto libc = fsutil::realpath(libc_link);
-    EXPECT_FALSE(libc_link == libc);
+    fsutil::path_t symlink("../file/link");
+    auto file = fsutil::realpath(symlink);
+    EXPECT_FALSE(symlink == file);
 }
 
 #endif

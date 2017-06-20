@@ -28,7 +28,6 @@ install:
   - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
 
 script:
-  - gcc -v && g++ -v && clang -v && clang++ -v && cmake --version
   - mkdir -p build
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..
