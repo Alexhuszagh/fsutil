@@ -21,10 +21,15 @@ addons:
     - gcc-6
 
 install:
+  - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+  - ln -s /usr/bin/g++-6 /usr/local/bin/g++
+  - ln -s /usr/bin/clang-3.9 /usr/local/bin/clang
+  - ln -s /usr/bin/clang++-3.9 /usr/local/bin/clang++
   - if [ "$CXX" = "g++" ]; then export CXX="g++-6" CC="gcc-6"; fi
   - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
 
 script:
+  - gcc -v && g++ -v && clang -v && clang++ -v && cmake --version
   - mkdir -p build
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=Debug ..
