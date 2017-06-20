@@ -8,7 +8,7 @@
 #include <fsutil.h>
 
 #include <deque>
-#include <iostream>
+#include <iostream>         // TODO: remove
 
 
 namespace fsutil
@@ -99,10 +99,13 @@ path_t normpath(const path_t& path)
         preferred += path.root_name();
         ++it;
     }
+    std::cout << "Path is: " << path << std::endl;
+    std::cout << preferred << std::endl;
     if (path.has_root_directory()) {
         preferred += path_t::preferred_separator;
         ++it;
     }
+    std::cout << preferred << std::endl;
 
     // get our directory separators
     std::deque<const path_t*> buffer;
@@ -137,6 +140,8 @@ path_t normpath(const path_t& path)
             buffer.push_back(&p);
         }
     }
+    std::cout << buffer.size() << std::endl;
+    std::cout << "-------------------------" << std::endl;
 
     // add the normalize elements to the path
     for (auto p: buffer) {

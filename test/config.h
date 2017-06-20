@@ -7,6 +7,9 @@
 #include <fsutil.h>
 #include <gtest/gtest.h>
 
+// MACROS
+// ------
+
 
 #if defined(_WIN32)                 // WINDOWS
 
