@@ -19,14 +19,12 @@ High-level, cross-platform filesystem operations for C++.
 
 ## Design
 
-
-
 ## Portability
 
-fsutil requires `<experimental/filesystem>`, a proposed C++17 feature, requiring a compiler at least one of the compilers listed below:
+fsutil requires `<experimental/filesystem>`, a proposed C++17 feature, requiring at minimum one of the following compilers:
 
 - GCC 5.3
-- Clang 3.9
+- Clang 3.9 (libstdc++ only)
 - Visual Studio 14 2015 update 3
 
 ## Contributors

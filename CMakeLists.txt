@@ -63,6 +63,11 @@ if(LINUX OR CMAKE_COMPILER_IS_GNUCXX)
     list(APPEND FSUTIL_LIBRARIES -lstdc++fs)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     list(APPEND FSUTIL_LIBRARIES -lc++experimental)
+elseif(MSVC)
+    # Need to specify proper exception handling for Windows.
+    set_target_properties(fsutil PROPERTIES
+        COMPILE_OPTIONS "/EHsc"
+    )
 endif()
 
 # EXAMPLES
@@ -102,7 +107,7 @@ if(BUILD_TESTS)
     # Need to specify proper exception handling for Windows.
     if(MSVC)
         set_target_properties(fsutil_tests PROPERTIES
-            COMPILE_OPTIONS "/EHsc;$<$<CONFIG:Release>:/Od>"
+            COMPILE_OPTIONS "/EHsc"
         )
     endif()
 
