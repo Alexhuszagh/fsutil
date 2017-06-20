@@ -12,7 +12,7 @@ compiler:
 
 os:
   - linux
-#  - osx
+  - osx
 
 addons:
   apt:
@@ -26,14 +26,14 @@ addons:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update                                                           ; fi
-  - if [ "$CXX" = "clang++" ] &&[[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/llvm/bin:$PATH"  ; fi
-  - if [ "$CXX" = "g++" ] &&[[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/gcc/bin:$PATH"       ; fi
-  - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install --with-toolchain llvm          ; fi
   - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc                                ; fi
+  - if [ "$CXX" = "clang++" ] &&[[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/llvm/bin:$PATH"  ; fi
+  - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install llvm                           ; fi
 
 install:
-  - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="g++-6" CC="gcc-6"; fi
+  - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CXX="g++-7" CC="gcc-7"; fi
   - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
+  - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
 
 script:
   - mkdir -p build
