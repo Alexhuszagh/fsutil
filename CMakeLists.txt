@@ -111,11 +111,6 @@ if(BUILD_TESTS)
         )
     endif()
 
-     add_custom_target(check_fsutil
-        COMMAND $<TARGET_FILE:fsutil_tests>
-        DEPENDS fsutil_tests
-    )
-
     add_test(NAME fsutil_tests
         COMMAND fsutil_tests
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}

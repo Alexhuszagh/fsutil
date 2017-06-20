@@ -46,4 +46,5 @@ script:
   - mkdir -p build
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON ..
-  - make -j 8 check_fsutil
+  - make -j 8
+  - ctest -C Release -V
