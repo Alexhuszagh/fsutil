@@ -3,6 +3,8 @@ fsutil
 
 High-level, cross-platform filesystem operations for C++.
 
+[![Build Status](https://travis-ci.org/Alexhuszagh/fsutil.svg?branch=master)](https://travis-ci.org/Alexhuszagh/fsutil)
+
 **Table of Contents**
 
 - [Design](#design)

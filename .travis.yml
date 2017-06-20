@@ -1,3 +1,10 @@
+# WARNING:
+# libc++, Clang's version of libstdc++, currently does not fully
+# implement <experimental/filesystem>, and is currently disabled.
+# On Linux, since Clang uses libstdc++ by default, fsutil will
+# still compile, however, on macOS, code must currently be compiled
+# by GCC 5.3 or later, using Homebrew.
+
 language: cpp
 notifications:
   email:
@@ -7,7 +14,7 @@ notifications:
     on_failure: always
 
 compiler:
-  - clang
+#  - clang
   - gcc
 
 os:
@@ -17,23 +24,23 @@ os:
 addons:
   apt:
     sources:
-      - llvm-toolchain-precise-3.9
+#      - llvm-toolchain-precise-3.9
       - ubuntu-toolchain-r-test
     packages:
-      - clang-3.9
+#      - clang-3.9
       - g++-6
       - gcc-6
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update                                                           ; fi
   - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc                                ; fi
-  - if [ "$CXX" = "clang++" ] &&[[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/llvm/bin:$PATH"  ; fi
-  - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install llvm                           ; fi
+#  - if [ "$CXX" = "clang++" ] &&[[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/usr/local/opt/llvm/bin:$PATH"  ; fi
+#  - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install llvm                           ; fi
 
 install:
   - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CXX="g++-7" CC="gcc-7"; fi
-  - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
   - if [ "$CXX" = "g++" ] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
+#  - if [ "$CXX" = "clang++" ] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
 
 script:
   - mkdir -p build
