@@ -1,0 +1,30 @@
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+language: cpp
+compiler:
+  - clang
+  - gcc
+
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-precise
+      - ubuntu-toolchain-r-test
+  packages:
+    - clang-3.9
+    - g++-6
+    - gcc-6
+
+install:
+  - install:
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-6" CC="gcc-6"; fi
+  - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.9" CC="clang-3.9"; fi
+
+script:
+  - mkdir -p build
+  - cd build
+  - cmake -DCMAKE_BUILD_TYPE=Debug ..
+  - make -j 8 check_fsutil
